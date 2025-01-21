@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webhook Yönetimi</title>
+</head>
+
+<body>
+    <form id="webhook-form">
+        <label for="webhook-url">Webhook URL:</label>
+        <input type="url" id="webhook-url" name="webhook-url" required>
+        <button type="submit">Kaydet</button>
+    </form>
+
+    <div id="webhook-events">
+        <h2>Olaylar</h2>
+        <ul id="event-list"></ul>
+    </div>
+
+    <script>
+        // Webhook URL'sini kaydetme
+        document.getElementById('webhook-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const webhookUrl = document.getElementById('webhook-url').value;
+            console.log('Webhook URL Kaydedildi:', webhookUrl);
+            alert('Webhook URL kaydedildi: ' + webhookUrl);
+        });
+
+        // Test için örnek olaylar
+        const events = [
+            { id: 1, type: 'Transcript Completed', time: '2025-01-17T12:00:00Z' },
+            { id: 2, type: 'Audio Uploaded', time: '2025-01-17T12:05:00Z' }
+        ];
+
+        // Olayları listeleme
+        const eventList = document.getElementById('event-list');
+        events.forEach(event => {
+            const li = document.createElement('li');
+            li.textContent = `${event.type} at ${event.time}`;
+            eventList.appendChild(li);
+        });
+    </script>
+</body>
+
+</html>
